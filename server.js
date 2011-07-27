@@ -34,24 +34,26 @@ function compile(str, path, fn) {
 
 //configure environments
 app.configure('development', function(){
-  app.set('m_database', 'chat-dev');
+  app.set('m_database', 'cricketscore-dev');
   app.set('m_host', 'localhost');
-  app.set('port', 9002);
+  app.set('m_port', '12345');
+  app.set('port', 3000);
   app.set('host', 'localhost');
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
 });
 
 app.configure('production', function(){
-  app.set('m_database', 'chat');
+  app.set('m_database', 'cricketscore');
   app.set('m_host', 'localhost');
-  app.set('port', 3002);
-  app.set('host', 'chat.schaermu.ch');
+  app.set('m_port', '12345');
+  app.set('port', 3000);
+  app.set('host', 'krishna.arava.in');
   app.use(express.errorHandler()); 
 });
 
 //configure server instance
 app.configure(function(){
-  app.set('connstring', 'mongodb://' + app.set('m_host') + '/' + app.set('m_database'));
+  app.set('connstring', 'mongodb://' + app.set('m_host') + ':' + app.set('m_port') + '/' + app.set('m_database'));
   app.set('views', __dirname + '/views');
   // set jade as default view engine
   app.set('view engine', 'jade');
